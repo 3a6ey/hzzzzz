@@ -114,10 +114,6 @@ function prints(...)
             TableText[i] = tostring(v)
         end
     end
-    local Text = table.concat(TableText, " ")
-    --appendfile("StratLoader/UserLogs/PrintLog.txt", Text.."\n")
-    --print(Text)
-    ConsoleInfo(Text)
 end
 getgenv().output = function(Text,Color)
     ConsolePrint(Color,"Info",Text)
@@ -158,7 +154,6 @@ else
     writefile("StrategiesX/UserConfig/UtilitiesConfig.txt", game:GetService("HttpService"):JSONEncode(UtilitiesConfig))
 end
 
-ConsolePrint("WHITE","Table",UtilitiesConfig)
 
 function SaveUtilitiesConfig()
     UtilitiesTab = UI.UtilitiesTab
@@ -190,7 +185,6 @@ function CheckPlace()
     return if not GameSpoof then (game.PlaceId == 5591597781) else if GameSpoof == "Ingame" then true else false
 end
 
-loadstring(game:HttpGet(MainLink.."TDS/LowGraphics.lua", true))()
 
 local GameInfo
 getgenv().GetGameInfo = function()
@@ -454,7 +448,7 @@ if CheckPlace() then
         LocalPlayer.Character.HumanoidRootPart.CFrame = Part.CFrame + Vector3.new(0, 3.5, 0)
     end)
     task.spawn(function()
-        loadstring(game:HttpGet(MainLink.."TDS/FreeCam.lua", true))()
+
 
         local ModeSection = maintab:Section("Mode: Voting")
         task.spawn(function()
@@ -521,12 +515,6 @@ if CheckPlace() then
             if not type(GetGameInfo():GetAttribute("Won")) == "boolean" then
                 repeat task.wait() until type(GetGameInfo():GetAttribute("Won")) == "boolean"
                 task.wait(1.3)
-            end
-            if UtilitiesConfig.Webhook.Enabled then
-                task.spawn(function()
-                    loadstring(game:HttpGet(MainLink.."TDS/Webhook.lua", true))()--loadstring(game:HttpGet("https://raw.githubusercontent.com/Sigmanic/Strategies-X/main/Webhook.lua", true))()
-                    prints("Sent Webhook Log")
-                end)
             end
             if not (UtilitiesConfig.RestartMatch or StratXLibrary.RejoinLobby) then
                 repeat task.wait() until (UtilitiesConfig.RestartMatch or StratXLibrary.RejoinLobby)
