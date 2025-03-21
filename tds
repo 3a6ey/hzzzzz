@@ -106,8 +106,6 @@ UtilitiesConfig = StratXLibrary.UtilitiesConfig
 
 
 
-loadstring(game:HttpGet(MainLink.."ConsoleLibrary.lua", true))()
-loadstring(game:HttpGet(MainLink.."TDS/JoinLessServer.lua", true))()
 
 function prints(...)
     local TableText = {...}
