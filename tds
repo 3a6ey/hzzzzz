@@ -777,33 +777,7 @@ end)
 
 prints("Loaded GUI")
 
-Functions.MatchMaking = function()
-    local MapProps,Index
-    local SpecialMap = {
-        "Pizza Party",
-        "Badlands II",
-        "Polluted Wastelands II", 
-        "Huevous Hunt",
-    }
-    if table.find(SpecialMap,ReplicatedStorage.State.Map.Value) then
-        return
-    end
-    repeat
-        task.wait()
-        for i,v in ipairs(StratXLibrary.Strat) do
-            if v.Map.Lists[#v.Map.Lists] and v.Map.Lists[#v.Map.Lists].Mode == "Survival" and not MapProps then-- string.find(i:lower(),"survival")
-                MapProps = v.Map.Lists[#v.Map.Lists]
-                Index = i
-            end
-        end
-    until MapProps
-    RemoteFunction:InvokeServer("LobbyVoting", "Override", MapProps.Map)
-    RemoteEvent:FireServer("LobbyVoting", "Vote", MapProps.Map, LocalPlayer.Character.HumanoidRootPart.Position)
-    RemoteEvent:FireServer("LobbyVoting","Ready")
-    task.wait(6)
-    ConsoleInfo(`Map Selected: {ReplicatedStorage.State.Map.Value}, Mode: {MapProps.Mode}, Solo Only: {MapProps.Solo}`)
-    StratXLibrary.Strat.ChosenID = Index
-end
+
 
 prints("Loaded Functions")
 
@@ -868,49 +842,14 @@ prints("Loaded Proxy Strat")
 task.spawn(function()
     local StratsListNum = 1
     prints("Loading Strat Data")
-    while not CheckPlace() do
-        task.wait()
-        if not StratXLibrary.Strat[StratsListNum] then
-            continue
-        end
-        local Strat = StratXLibrary.Strat[StratsListNum]
-        for i,v in next, Functions do
-            task.spawn(function()
-                if not Strat[i] then
-                    repeat task.wait() until Strat[i]
-                end
-                local ListNum = 1
-                while true do
-                    if ListNum > #Strat[i].Lists then
-                        repeat task.wait() until ListNum <= #Strat[i].Lists
-                    end
-                    if not Strat[i].Lists[ListNum] then 
-                        ListNum += 1 
-                        continue
-                    end
-                    Functions[i](Strat,Strat[i].Lists[ListNum])
-                    ListNum += 1
-                    task.wait()
-                end
-            end)
-        end
-        StratsListNum += 1
-    end
-
-    if Matchmaking then
-        prints("MatchMaking Enabled")
-        Functions.MatchMaking()
-    end
     --print("ID1",StratXLibrary.Strat.ChosenID)
     if not StratXLibrary.Strat.ChosenID then
         prints("Strat ID Not Set. Now Checking")
         repeat
             task.wait()
             for i,v in ipairs(StratXLibrary.Strat) do
-                if v.Map.Lists[#v.Map.Lists] and v.Map.Lists[#v.Map.Lists].Map == ReplicatedStorage.State.Map.Value and not StratXLibrary.Strat.ChosenID then -- not apply same map dfferent mode
                     StratXLibrary.Strat.ChosenID = i
                 end
-            end
         until StratXLibrary.Strat.ChosenID
     end
     prints("Selected Strat ID",StratXLibrary.Strat.ChosenID)
