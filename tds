@@ -777,19 +777,6 @@ end)
 
 prints("Loaded GUI")
 
-Functions.Map = loadstring(game:HttpGet(MainLink.."TDS/Functions/Map.lua", true))()
-Functions.Loadout = loadstring(game:HttpGet(MainLink.."TDS/Functions/Loadout.lua", true))()
-Functions.Mode = loadstring(game:HttpGet(MainLink.."TDS/Functions/Mode.lua", true))()
-Functions.Place = loadstring(game:HttpGet(MainLink.."TDS/Functions/Place.lua", true))()
-Functions.Upgrade = loadstring(game:HttpGet(MainLink.."TDS/Functions/Upgrade.lua", true))()
-Functions.Sell = loadstring(game:HttpGet(MainLink.."TDS/Functions/Sell.lua", true))()
-Functions.Skip = loadstring(game:HttpGet(MainLink.."TDS/Functions/Skip.lua", true))()
-Functions.Ability = loadstring(game:HttpGet(MainLink.."TDS/Functions/Ability.lua", true))()
-Functions.Target = loadstring(game:HttpGet(MainLink.."TDS/Functions/Target.lua", true))()
-Functions.AutoChain = loadstring(game:HttpGet(MainLink.."TDS/Functions/AutoChain.lua", true))()
-Functions.SellAllFarms = loadstring(game:HttpGet(MainLink.."TDS/Functions/SellAllFarms.lua", true))()
-Functions.Option = loadstring(game:HttpGet(MainLink.."TDS/Functions/Option.lua", true))()
-
 Functions.MatchMaking = function()
     local MapProps,Index
     local SpecialMap = {
