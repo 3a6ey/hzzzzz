@@ -101,18 +101,10 @@ UILibrary.options.toggledisplay = 'Fill'
 UI = StratXLibrary.UI
 UtilitiesConfig = StratXLibrary.UtilitiesConfig
 
-local Patcher = loadstring(game:HttpGet(MainLink.."TDS/ConvertFunc.lua", true))()--loadstring(game:HttpGet("https://raw.githubusercontent.com/Sigmanic/Strategies-X/main/ConvertFunc.lua", true))()
-function ParametersPatch(FuncsName,...)
-    if type(...) == "table" and #{...} == 1 then --select("#",...)
-        return ...
-    end
-    local GetFuncName = FuncsName --debug.getinfo(4,"n").name
-    if StratXLibrary.Functions[GetFuncName] and Patcher[GetFuncName] then
-        return Patcher[GetFuncName](...)
-    else
-        return {...}
-    end
-end
+
+
+
+
 
 loadstring(game:HttpGet(MainLink.."ConsoleLibrary.lua", true))()
 loadstring(game:HttpGet(MainLink.."TDS/JoinLessServer.lua", true))()
